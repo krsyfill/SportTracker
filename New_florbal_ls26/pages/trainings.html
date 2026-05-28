@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!-- ============================================
+     FLORBAL LEAGUE - NADCHÁZEJÍCÍ AKCE
+     Rozpis zápasů a akcí
+     ============================================ -->
+
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akce - Florbal League</title>
+  <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/layout.js" defer></script>
+</head>
+
+<body>
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+
+            <!-- LEFT -->
+            <div class="page-header-content">
+
+                <h1>Tréninky</h1>
+
+                <p>
+                    Přehled všech nadcházejících a minulých tréninků
+                </p>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="page-header-actions">
+
+                <a href="/pages/create-training.html" class="btn">
+                    + Nový trénink
+                </a>
+
+            </div>
+
+        </header>
+  <!-- ============================================
+       HLAVNÍ OBSAH - Nadcházející tréninky
+       ============================================ -->
+        <section class="page-section">
+    <!-- ============================================
+         TABULKA - Nadcházející tréninky
+         ============================================ -->
+    <div class="card">
+      <!-- Nadpis -->
+        <h2 class="section-title">
+            📅 Nadcházející tréninky
+        </h2>
+      
+      <!-- Poznámka pod nadpisem -->
+      <p class="section-info">Plán tréninků pro následující dny</p>
+        <!-- FILTER TOOLBAR -->
+
+        <div class="toolbar">
+
+            <!-- SEARCH -->
+            <input type="text"
+                   placeholder="Hledat trénink..."
+                   class="search-input"
+                   id="trainingSearch">
+
+            <!-- SPORT FILTER -->
+            <select class="filter-select"
+                    id="sportFilter">
+
+                <option>
+                    Všechny sporty
+                </option>
+
+                <option>
+                    Florbal
+                </option>
+
+                <option>
+                    Futsal
+                </option>
+
+            </select>
+
+        </div>
+      
+      <!-- Tabulka tréninků -->
+        <div class="table-wrapper">
+        <table class="table">
+        <!-- ZÁHLAVÍ - Názvy sloupců -->
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Čas</th>
+            <th>Hala</th>
+            <th>Sport</th>
+            <th>Kapacita</th>
+            <th>Stav</th>
+            <th>Info</th>
+            <th>Cena</th>
+            <th>Akce</th>
+          </tr>
+        </thead>
+        
+        <!-- TĚLO TABULKY - Data řádků s tréninky -->
+
+            <tbody id="trainingsTableBody">
+
+            </tbody>
+
+      </table>
+        </div>
+    </div>
+    
+    <!-- ============================================
+         SEKCE - Minulé akce
+         ============================================ -->
+      <div class="card past-events">
+      <!-- Nadpis -->
+          <h2 class="section-title">
+              ✅ Minulé akce
+          </h2>
+      
+      <!-- Poznámka pod nadpisem -->
+      <p class="section-info">Tréninky, které již proběhly</p>
+      
+      <!-- Tabulka minulých akcí -->
+        <div class="table-wrapper">
+        <table class="table">
+        <!-- ZÁHLAVÍ - Názvy sloupců -->
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Čas</th>
+            <th>Hala</th>
+            <th>Sport</th>
+            <th>Zúčastnilo se</th>
+            <th>Info</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        
+        <!-- TĚLO TABULKY - Data řádků -->
+            <tbody id="pastTrainingsTableBody">
+          <!-- MINULÁ AKCE #1 -->
+          <tr class="clickable-row"
+              onclick="window.location.href='../pages/training-detail.html?id=1'">
+            <td>24. 1. 2026</td>
+            <td>19:00</td>
+            <td>10. ZŠ Plzeň</td>
+            <td>Florbal</td>
+            <td>18/20</td>
+            <td>Základní trénink</td>
+            <td><span class="badge badge-success">✓ Skončeno</span></td>
+          </tr>
+          
+          <!-- MINULÁ AKCE #2 -->
+          <tr class="clickable-row"
+              onclick="window.location.href='../pages/training-detail.html?id=1'">
+            <td>23. 1. 2026</td>
+            <td>18:00</td>
+            <td>Palác her Praha</td>
+            <td>Badminton</td>
+            <td>12/12</td>
+            <td>—</td>
+            <td><span class="badge badge-success">✓ Skončeno</span></td>
+          </tr>
+          
+          <!-- MINULÁ AKCE #3 -->
+          <tr class="clickable-row"
+              onclick="window.location.href='../pages/training-detail.html?id=1'">
+            <td>22. 1. 2026</td>
+            <td>19:30</td>
+            <td>Hala Bohemians</td>
+            <td>Florbal</td>
+            <td>15/20</td>
+            <td>Pokročilý</td>
+            <td><span class="badge badge-success">✓ Skončeno</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    
+  </section>
+    </main>
+
+</div>
+<script>
+
+    async function loadTrainings() {
+
+        const response = await fetch(
+            "http://localhost:8080/trainings"
+        );
+
+        const trainings = await response.json();
+
+        const selectedSport =
+            document.getElementById(
+                "sportFilter"
+            ).value;
+
+        const upcomingTableBody =
+            document.getElementById(
+                "trainingsTableBody"
+            );
+
+        const pastTableBody =
+            document.getElementById(
+                "pastTrainingsTableBody"
+            );
+
+        upcomingTableBody.innerHTML = "";
+        pastTableBody.innerHTML = "";
+
+        const filteredTrainings =
+            trainings.filter(training => {
+
+                if (
+                    selectedSport ===
+                    "Všechny sporty"
+                ) {
+                    return true;
+                }
+
+                return (
+                    selectedSport ===
+                    "Florbal"
+                );
+            });
+
+        const today = new Date();
+
+        filteredTrainings.forEach(training => {
+
+            const trainingDate =
+                new Date(
+                    training.trainingDate
+                );
+
+            // =========================================
+            // UPCOMING TRAININGS
+            // =========================================
+
+            if (trainingDate >= today) {
+
+                upcomingTableBody.innerHTML += `
+
+                <tr class="clickable-row"
+                    onclick="notImplemented()">
+
+                    <td>
+                        ${training.trainingDate}
+                    </td>
+
+                    <td>
+                        19:00
+                    </td>
+
+                    <td>
+                        Sportovní hala
+                    </td>
+
+                    <td>
+                        Florbal
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        <span class="badge badge-success">
+                            Volné
+                        </span>
+                    </td>
+
+                    <td>
+                        Backend training
+                    </td>
+
+                    <td>
+                        Hrazeno
+                    </td>
+
+                    <td>
+                        <button class="btn-register"
+                                onclick="event.stopPropagation(); notImplemented()">
+
+                            + Přihlásit se
+
+                        </button>
+                    </td>
+
+                </tr>
+
+                `;
+            }
+
+                // =========================================
+                // PAST TRAININGS
+            // =========================================
+
+            else {
+
+                pastTableBody.innerHTML += `
+
+                <tr class="clickable-row"
+                    onclick="window.location.href='../pages/training-detail.html?id=${training.id}'">
+
+                    <td>
+                        ${training.trainingDate}
+                    </td>
+
+                    <td>
+                        19:00
+                    </td>
+
+                    <td>
+                        Sportovní hala
+                    </td>
+
+                    <td>
+                        Florbal
+                    </td>
+
+                    <td>
+                        18/20
+                    </td>
+
+                    <td>
+                        Backend training
+                    </td>
+
+                    <td>
+                        <span class="badge badge-success">
+                            ✓ Skončeno
+                        </span>
+                    </td>
+
+                </tr>
+
+                `;
+            }
+
+        });
+
+    }
+
+    loadTrainings();
+
+    document
+        .getElementById("sportFilter")
+        .addEventListener(
+            "change",
+            loadTrainings
+        );
+
+</script>
+</body>
+
+</html>

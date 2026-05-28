@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail tréninku | SportTracker</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/layout.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- BREADCRUMBS -->
+
+        <div class="breadcrumbs">
+
+            <a href="../pages/dashboard.html"
+               class="breadcrumb-link">
+
+                Dashboard
+
+            </a>
+
+            <span class="breadcrumb-separator">
+        /
+    </span>
+
+            <a href="../pages/trainings.html"
+               class="breadcrumb-link">
+
+                Tréninky
+
+            </a>
+
+            <span class="breadcrumb-separator">
+        /
+    </span>
+
+            <span class="breadcrumb-current">
+        Detail tréninku
+    </span>
+
+        </div>
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h1>Detail tréninku</h1>
+
+                <p>
+                    Přehled konkrétního tréninku a účastníků - !!!!! MOCKDATA - not linked!!!!!!
+                </p>
+            </div>
+
+        </header>
+
+        <!-- =========================================
+             ZÁKLADNÍ INFO
+             ========================================= -->
+
+        <section class="dashboard-grid">
+
+            <div class="card">
+                <h3>Datum</h3>
+                <div class="card-text"
+                    id="trainingDate">
+
+                    Loading...
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Sport</h3>
+                <div class="card-text"
+                     id="trainingSport">
+
+                    Loading...
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Hala</h3>
+                <div class="card-text"
+                     id="trainingHall">
+
+                    Loading...
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Kapacita</h3>
+                <div class="card-text"
+                     id="trainingCapacity">
+
+                    Loading...
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =========================================
+             ÚČASTNÍCI
+             ========================================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Účastníci tréninku
+            </h2>
+
+            <div class="table-wrapper">
+
+                <table class="table">
+
+                <thead>
+
+                <tr>
+                    <th>Hráč</th>
+                    <th>Status</th>
+                    <th>Dorazil</th>
+                    <th>Platba</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td>Jan Dvořák</td>
+                    <td>
+                        <span class="badge badge-success">
+                            Potvrzen
+                        </span>
+                    </td>
+                    <td>ANO</td>
+                    <td>
+                        <span class="badge badge-success">
+                            Zaplaceno
+                        </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Martin Svoboda</td>
+                    <td>
+                        <span class="badge badge-neutral">
+                            Náhradník
+                        </span>
+                    </td>
+                    <td>NE</td>
+                    <td>
+                        <span class="badge badge-danger">
+                            Nezaplaceno
+                        </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Petr Novák</td>
+                    <td>
+                        <span class="badge badge-success">
+                            Potvrzen
+                        </span>
+                    <td>ANO</td>
+                    <td>
+                        <span class="badge badge-neutral">
+                            Předplatné
+                        </span>
+                    </td>
+                </tr>
+
+                </tbody>
+
+                </table>
+</div>
+
+        </section>
+
+        <!-- =========================================
+             ODEHRANÉ ZÁPASY
+             ========================================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Odehrané zápasy
+            </h2>
+
+            <div class="table-wrapper">
+
+                <table class="table">
+
+                <thead>
+
+                <tr>
+                    <th>Tým A</th>
+                    <th>Skóre</th>
+                    <th>Tým B</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td>Černí</td>
+                    <td>5 : 3</td>
+                    <td>Bílí</td>
+                </tr>
+
+                <tr>
+                    <td>Zelení</td>
+                    <td>2 : 2</td>
+                    <td>Modří</td>
+                </tr>
+
+                </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+    async function loadTrainingDetail() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const id = params.get("id");
+
+        const response = await fetch(
+            `http://localhost:8080/trainings/${id}`
+        );
+
+        const training =
+            await response.json();
+
+        document.getElementById(
+            "trainingDate"
+        ).innerText =
+            training.trainingDate;
+
+        document.getElementById(
+            "trainingSport"
+        ).innerText =
+            "Florbal";
+
+        document.getElementById(
+            "trainingHall"
+        ).innerText =
+            "Sportovní hala";
+
+        document.getElementById(
+            "trainingCapacity"
+        ).innerText =
+            "12 / 20";
+    }
+
+    loadTrainingDetail();
+
+</script>
+
+</body>
+
+</html>

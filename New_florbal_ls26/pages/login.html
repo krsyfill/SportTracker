@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- ============================================
+     FLORBAL LEAGUE - LOGIN STRÁNKA
+     Přihlášení do aplikace pro amatérské hráče
+     
+     DOCTYPE html - Řekne prohlížeči, že jde o HTML5 dokument
+     ============================================ -->
+
+<html lang="cs">
+<!-- Nastavuje jazyk dokumentu na češtinu -->
+
+<head>
+  <!-- HEAD - Metadata a nastavení dokumentu (nevidíme v obsahu) -->
+  
+  <!-- Nastavuje znakovou sadu na UTF-8 (podporuje českéznaky) -->
+  <meta charset="UTF-8">
+  
+  <!-- Viewport - Zajišťuje správné zobrazení na mobilech -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Nadpis stránky - Zobrazuje se v záložce prohlížeče -->
+  <title>Přihlášení - Florbal League</title>
+  
+  <!-- Odkaz na CSS soubor se styly -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+  <!-- BODY - Viditelný obsah stránky -->
+  
+  <!-- ============================================
+       HLAVNÍ OBSAH - Formulář pro přihlášení
+       ============================================ -->
+  <main>
+    <!-- Kontejner formuláře -->
+    <div class="form-container">
+      <!-- Nadpis -->
+      <h1>Přihlášení</h1>
+      
+      <!-- Přihlašovací formulář -->
+        <form class="form">
+        <!-- Emailová pole -->
+        <div class="form-group">
+          <!-- Popisek -->
+          <label for="email">Email nebo uživatelské jméno</label>
+          
+          <!-- Vstupní pole -->
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="vasemail@domena.cz"
+            required
+          >
+        </div>
+        
+        <!-- Heslo -->
+        <div class="form-group">
+          <label for="password">Heslo</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Vaše heslo"
+            required
+          >
+        </div>
+        
+        <!-- Zapamatovat si mě -->
+        <div class="form-group">
+          <label class="checkbox-label">
+            <!-- Checkbox pole -->
+            <input type="checkbox" name="remember">
+            Zapamatovat si mě
+          </label>
+        </div>
+        
+        <!-- Přihlašovací tlačítko -->
+        <button type="submit" class="btn"
+                onclick="window.location.href='../pages/dashboard.html'"
+        >Přihlásit se</button>
+      </form>
+      
+      <!-- Další možnosti -->
+      <div class="form-links">
+        <!-- Registrační odkaz -->
+        <a href="#register"
+           onclick="notImplemented()">Nemáte účet? Registrujte se</a>
+        
+        <!-- Obnovení hesla -->
+        <a href="#forgotten"
+           onclick="notImplemented()">Zapomněli jste heslo?</a>
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

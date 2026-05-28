@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<!-- ============================================
+     FLORBAL LEAGUE - STATISTIKY
+     Tabulky s nejlepšími střelci a asistenty
+     ============================================ -->
+
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistiky - Florbal League</title>
+  <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/layout.js" defer></script>
+</head>
+
+<body>
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+  
+  <!-- ============================================
+       HLAVNÍ OBSAH - Statistiky a tabulky
+       ============================================ -->
+  <section>
+    <!-- ============================================
+         FILTRY - Výběr sezony a sportu
+         ============================================ -->
+    <div class="card">
+
+      <!-- Nadpis -->
+      <h2>Filtry</h2>
+        <div class="toolbar">
+
+            <!-- LEFT -->
+            <div class="toolbar-left">
+
+                <!-- Search -->
+                <input
+                        type="text"
+                        class="form-input toolbar-search"
+                        placeholder="Vyhledat hráče..."
+                >
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="toolbar-right">
+
+                <button class="btn">
+                    Export
+                </button>
+
+                <button class="btn">
+                    Aktualizovat
+                </button>
+
+            </div>
+
+        </div>
+      
+      <!-- Kontejner s filtry -->
+      <div class="filters-grid">
+        
+        <!-- Filtr sezony -->
+        <div class="filter-group">
+          <!-- Popisek -->
+          <label for="season-select">Sezóna</label>
+          
+          <!-- Dropdown se sezónami -->
+          <select id="season-select" class="filter-select">
+            <option value="2025-2026">Sezóna 2025/2026</option>
+            <option value="2024-2025">Sezóna 2024/2025</option>
+            <option value="2023-2024">Sezóna 2023/2024</option>
+            <option value="2022-2023">Sezóna 2022/2023</option>
+          </select>
+        </div>
+        
+        <!-- Filtr sportu -->
+        <div class="filter-group">
+          <!-- Popisek -->
+          <label for="sport-select">Sport</label>
+          
+          <!-- Dropdown se sporty -->
+          <select id="sport-select" class="filter-select">
+            <option value="florbal">Florbal</option>
+            <option value="futsal">Futsal</option>
+          </select>
+        </div>
+        
+        <!-- Filtr haly -->
+        <div class="filter-group">
+          <!-- Popisek -->
+          <label for="hall-select">Hala</label>
+          
+          <!-- Dropdown se halami -->
+          <select id="hall-select" class="filter-select">
+            <option value="vsechny">Všechny haly</option>
+            <option value="10-zs-plzen">10. ZŠ Plzeň</option>
+            <option value="palac-her-praha">Palác her Praha</option>
+            <option value="hala-bohemians">Hala Bohemians</option>
+            <option value="hala-sparty">Hala Sparty</option>
+          </select>
+        </div>
+        
+      </div>
+    </div>
+    <!-- ============================================
+         TABULKA #1 - Nejlepší střelci
+         ============================================ -->
+      <!-- =========================================
+     TABS
+     ========================================= -->
+
+      <div class="tabs"
+           id="statisticsContent">
+
+          <button class="tab-button active" data-tab="scorers">
+              Střelci
+          </button>
+
+          <button class="tab-button" data-tab="assists">
+              Asistence
+          </button>
+
+          <button class="tab-button" data-tab="points">
+              Kanadské body
+          </button>
+
+      </div>
+      <div id="statisticsTables" class="tab-content active">
+          <div class="card">
+      <!-- Nadpis tabulky -->
+      <h2>🎯 Nejlepší střelci</h2>
+      
+      <!-- Tabulka -->
+              <table class="table">
+        <!-- ZÁHLAVÍ - Názvy sloupců -->
+        <thead>
+          <tr>
+            <!-- Pořadí -->
+            <th>Pořadí</th>
+            <!-- Jméno hráče -->
+            <th>Jméno</th>
+            <!-- Domácí hala -->
+            <th>Domácí hala</th>
+            <!-- Počet gólů -->
+            <th>Góly</th>
+          </tr>
+        </thead>
+        
+        <!-- TĚLO TABULKY - Data řádků -->
+        <tbody>
+          <!-- Řádek 1 - 1. místo (zlatá medaile) -->
+          <tr>
+            <td>1</td>
+            <td>Petr Svoboda</td>
+            <td>Palác her Praha</td>
+            <td>35</td>
+          </tr>
+          
+          <!-- Řádek 2 - 2. místo (stříbrná medaile) -->
+          <tr>
+            <td>2</td>
+            <td>Václav Novák</td>
+            <td>10. ZŠ Plzeň</td>
+            <td>32</td>
+          </tr>
+          
+          <!-- Řádek 3 - 3. místo (bronzová medaile) -->
+          <tr>
+            <td>3</td>
+            <td>Jan Dvořák</td>
+            <td>10. ZŠ Plzeň</td>
+            <td>28</td>
+          </tr>
+          
+          <!-- Řádek 4 -->
+          <tr>
+            <td>4</td>
+            <td>Tomáš Křížek</td>
+            <td>Hala Sparty</td>
+            <td>25</td>
+          </tr>
+          
+          <!-- Řádek 5 -->
+          <tr>
+            <td>5</td>
+            <td>David Kučera</td>
+            <td>Hala Bohemians</td>
+            <td>24</td>
+          </tr>
+          
+          <!-- Řádek 6 -->
+          <tr>
+            <td>6</td>
+            <td>Martin Janda</td>
+            <td>10. ZŠ Plzeň</td>
+            <td>22</td>
+          </tr>
+          
+          <!-- Řádek 7 -->
+          <tr>
+            <td>7</td>
+            <td>Jiří Pospíšil</td>
+            <td>Palác her Praha</td>
+            <td>20</td>
+          </tr>
+          
+          <!-- Řádek 8 -->
+          <tr>
+            <td>8</td>
+            <td>Lukáš Horák</td>
+            <td>Hala Bohemians</td>
+            <td>19</td>
+          </tr>
+          
+          <!-- Řádek 9 -->
+          <tr>
+            <td>9</td>
+            <td>Pavel Bednář</td>
+            <td>Palác her Praha</td>
+            <td>18</td>
+          </tr>
+          
+          <!-- Řádek 10 -->
+          <tr>
+            <td>10</td>
+            <td>Vladimír Čech</td>
+            <td>Hala Sparty</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+          </div>
+      </div>
+    <!-- ============================================
+         TABULKA #2 - Nejlepší asistenti
+         ============================================ -->
+      <div id="assists" class="tab-content">
+          <div class="card">
+      <!-- Nadpis tabulky -->
+      <h2>🤝 Nejlepší asistenti</h2>
+      
+      <!-- Tabulka -->
+              <table class="table">
+        <!-- ZÁHLAVÍ - Názvy sloupců -->
+        <thead>
+          <tr>
+            <!-- Pořadí -->
+            <th>Pořadí</th>
+            <!-- Jméno hráče -->
+            <th>Jméno</th>
+            <!-- Domácí hala -->
+            <th>Domácí hala</th>
+            <!-- Počet asistencí -->
+            <th>Asistencí</th>
+          </tr>
+        </thead>
+        
+        <!-- TĚLO TABULKY - Data řádků -->
+        <tbody>
+          <!-- Řádek 1 - 1. místo (zlatá medaile) -->
+          <tr>
+            <td>1</td>
+            <td>Michal Řeha</td>
+            <td>HC Bohemians Praha</td>
+            <td>22</td>
+          </tr>
+          
+          <!-- Řádek 2 - 2. místo (stříbrná medaile) -->
+          <tr>
+            <td>2</td>
+            <td>Ondřej Varga</td>
+            <td>FTC SŠOL Praha</td>
+            <td>19</td>
+          </tr>
+          
+          <!-- Řádek 3 - 3. místo (bronzová medaile) -->
+          <tr>
+            <td>3</td>
+            <td>Roman Svoboda</td>
+            <td>Spartak Prague</td>
+            <td>18</td>
+          </tr>
+          
+          <!-- Řádek 4 -->
+          <tr>
+            <td>4</td>
+            <td>Filip Horáček</td>
+            <td>Tiger Kladno</td>
+            <td>16</td>
+          </tr>
+          
+          <!-- Řádek 5 -->
+          <tr>
+            <td>5</td>
+            <td>Marek Šulc</td>
+            <td>Vlci Domažlice</td>
+            <td>15</td>
+          </tr>
+          
+          <!-- Řádek 6 -->
+          <tr>
+            <td>6</td>
+            <td>Erik Halaj</td>
+            <td>FbK Ústí nad Labem</td>
+            <td>14</td>
+          </tr>
+          
+          <!-- Řádek 7 -->
+          <tr>
+            <td>7</td>
+            <td>Tomáš Bureš</td>
+            <td>UFSM Hawks Brno</td>
+            <td>13</td>
+          </tr>
+          
+          <!-- Řádek 8 -->
+          <tr>
+            <td>8</td>
+            <td>Stanislav Vrábel</td>
+            <td>HC Bohemians Praha</td>
+            <td>12</td>
+          </tr>
+          
+          <!-- Řádek 9 -->
+          <tr>
+            <td>9</td>
+            <td>Jakub Mestek</td>
+            <td>Spartak Prague</td>
+            <td>11</td>
+          </tr>
+          
+          <!-- Řádek 10 -->
+          <tr>
+            <td>10</td>
+            <td>Bruno Krejčí</td>
+            <td>Tiger Kladno</td>
+            <td>10</td>
+          </tr>
+        </tbody>
+      </table>
+          </div>
+    </div>
+    
+    <!-- ============================================
+         TABULKA #3 - Nejlepší hráči (kanadské bodování)
+         ============================================ -->
+      <div id="points" class="tab-content">
+          <div class="card">
+      <!-- Nadpis tabulky -->
+      <h2>⭐ Nejlepší hráči (kanadské bodování)</h2>
+      
+      <!-- Tabulka -->
+              <table class="table">
+        <!-- ZÁHLAVÍ - Názvy sloupců -->
+        <thead>
+          <tr>
+            <!-- Pořadí -->
+            <th>Pořadí</th>
+            <!-- Jméno hráče -->
+            <th>Jméno</th>
+            <!-- Domácí hala -->
+            <th>Domácí hala</th>
+            <!-- Počet bodů (góly + asistencí) -->
+            <th>Body</th>
+          </tr>
+        </thead>
+        
+        <!-- TĚLO TABULKY - Data řádků -->
+        <tbody>
+          <!-- Řádek 1 - 1. místo (zlatá medaile) -->
+          <tr>
+            <td>1</td>
+            <td>Petr Svoboda</td>
+            <td>HC Bohemians Praha</td>
+            <td>57</td>
+          </tr>
+          
+          <!-- Řádek 2 - 2. místo (stříbrná medaile) -->
+          <tr>
+            <td>2</td>
+            <td>Václav Novák</td>
+            <td>FTC SŠOL Praha</td>
+            <td>51</td>
+          </tr>
+          
+          <!-- Řádek 3 - 3. místo (bronzová medaile) -->
+          <tr>
+            <td>3</td>
+            <td>Michal Řeha</td>
+            <td>HC Bohemians Praha</td>
+            <td>48</td>
+          </tr>
+          
+          <!-- Řádek 4 -->
+          <tr>
+            <td>4</td>
+            <td>Jan Dvořák</td>
+            <td>HC Bohemians Praha</td>
+            <td>43</td>
+          </tr>
+          
+          <!-- Řádek 5 -->
+          <tr>
+            <td>5</td>
+            <td>Tomáš Křížek</td>
+            <td>Spartak Prague</td>
+            <td>41</td>
+          </tr>
+          
+          <!-- Řádek 6 -->
+          <tr>
+            <td>6</td>
+            <td>David Kučera</td>
+            <td>Tiger Kladno</td>
+            <td>40</td>
+          </tr>
+          
+          <!-- Řádek 7 -->
+          <tr>
+            <td>7</td>
+            <td>Ondřej Varga</td>
+            <td>FTC SŠOL Praha</td>
+            <td>38</td>
+          </tr>
+          
+          <!-- Řádek 8 -->
+          <tr>
+            <td>8</td>
+            <td>Martin Janda</td>
+            <td>Vlci Domažlice</td>
+            <td>37</td>
+          </tr>
+          
+          <!-- Řádek 9 -->
+          <tr>
+            <td>9</td>
+            <td>Jiří Pospíšil</td>
+            <td>FbK Ústí nad Labem</td>
+            <td>34</td>
+          </tr>
+          
+          <!-- Řádek 10 -->
+          <tr>
+            <td>10</td>
+            <td>Roman Svoboda</td>
+            <td>Spartak Prague</td>
+            <td>33</td>
+          </tr>
+        </tbody>
+      </table>
+          </div>
+    </div>
+      <div class="data-state"
+           id="emptyState"
+           style="display: none;">
+
+          <div class="data-state-icon">
+              📊
+          </div>
+
+          <div class="data-state-title">
+
+              <div class="empty-state">
+
+                  <h3>
+                      Žádná data
+                  </h3>
+
+                  <p>
+                      Pro vybrané filtry
+                      nebyly nalezeny
+                      žádné statistiky.
+                  </p>
+
+              </div>
+
+          </div>
+
+          <div class="data-state-text">
+
+              Pro vybrané filtry
+              nebyly nalezeny
+              žádné statistiky.
+
+          </div>
+
+      </div>
+  </section>
+    </main>
+
+</div>
+<script>
+
+    const sportSelect =
+        document.getElementById(
+            "sport-select"
+        );
+
+    const emptyState =
+        document.getElementById(
+            "emptyState"
+        );
+
+    const statisticsContent =
+        document.getElementById(
+            "statisticsContent"
+        );
+
+    const statisticsTables =
+        document.getElementById(
+            "statisticsTables"
+        );
+
+    function updateStatisticsState() {
+
+        if (
+            sportSelect.value ===
+            "futsal"
+        ) {
+
+            emptyState.style.display =
+                "block";
+
+            statisticsContent.style.display =
+                "none";
+
+            statisticsTables.style.display =
+                "none";
+        }
+
+        else {
+
+            emptyState.style.display =
+                "none";
+
+            statisticsContent.style.display =
+                "flex";
+
+            statisticsTables.style.display =
+                "block";
+        }
+
+    }
+
+    sportSelect.addEventListener(
+        "change",
+        updateStatisticsState
+    );
+
+    updateStatisticsState();
+
+</script>
+</body>
+
+</html>

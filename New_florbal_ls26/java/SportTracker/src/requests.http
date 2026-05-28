@@ -1,0 +1,31 @@
+GET http://localhost:8080/trainings
+
+
+###
+
+### POST http://localhost:8080/trainings
+### Content-Type: application/json
+###
+###{
+###  "trainingDate": "2026-06-01"
+###}
+###
+
+GET http://localhost:8080/trainings/1
+
+###
+
+GET http://localhost:8080/players/1
+
+
+###
+
+PUT http://localhost:8080/players/1
+Content-Type: application/json
+
+{
+  "firstName": "Filip",
+  "lastName": "Novák",
+  "birthDate": "2000-05-12",
+  "note": "Updated profile"
+}

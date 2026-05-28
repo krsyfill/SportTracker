@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!-- ============================================
+     FLORBAL LEAGUE - PROFIL HRÁČE
+     Stránka s detaily o hráči a jeho účtu
+     ============================================ -->
+
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Můj Profil - Florbal League</title>
+  <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/layout.js" defer></script>
+</head>
+
+<body>
+
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+  <!-- ============================================
+       HLAVNÍ OBSAH - Profil hráče
+       ============================================ -->
+  <section>
+    <!-- Kartička s informacemi o hráči -->
+      <div class="card profile-header-card">
+      <!-- Horní část - Základní info -->
+      <div class="profile-header">
+        <!-- Jméno hráče -->
+          <h1 id="playerName">
+              Loading...
+          </h1>
+      </div>
+      
+      <!-- Tlačítko Upravit profil -->
+      <button class="btn" style="margin-top: 15px;" onclick="editPlayer()"> ✏️ Upravit profil
+
+      </button>
+          <div id="editProfileForm"
+               style="display: none;
+            margin-top: 20px;">
+
+              <input type="text"
+                     id="editFirstName"
+                     class="search-input"
+                     placeholder="Jméno">
+
+              <input type="text"
+                     id="editLastName"
+                     class="search-input"
+                     placeholder="Příjmení"
+                     style="margin-top: 10px;">
+
+              <input type="text"
+                     id="editPhone"
+                     class="search-input"
+                     placeholder="Telefon"
+                     style="margin-top: 10px;">
+
+              <button class="btn"
+                      style="margin-top: 10px;"
+                      onclick="savePlayer()">
+
+                  💾 Uložit
+
+              </button>
+
+          </div>
+    </div>
+    
+    <!-- ============================================
+         FILTRY - Výběr sezony, sportu a haly
+         ============================================ -->
+    <div class="filters-container">
+      <!-- Nadpis -->
+      <h2>Filtry</h2>
+      
+      <!-- Kontejner s filtry -->
+      <div class="filters-grid">
+        
+        <!-- Filtr sezony -->
+        <div class="filter-group">
+          <!-- Popisek -->
+          <label for="season-select-profile">Sezóna</label>
+          
+          <!-- Dropdown se sezónami -->
+          <select id="season-select-profile" class="filter-select">
+            <option value="2025-2026">Sezóna 2025/2026</option>
+            <option value="2024-2025">Sezóna 2024/2025</option>
+            <option value="2023-2024">Sezóna 2023/2024</option>
+            <option value="2022-2023">Sezóna 2022/2023</option>
+          </select>
+        </div>
+        
+        <!-- Filtr sportu -->
+        <div class="filter-group">
+          <!-- Popisek -->
+          <label for="sport-select-profile">Sport</label>
+          
+          <!-- Dropdown se sporty -->
+          <select id="sport-select-profile" class="filter-select">
+            <option value="florbal">Florbal</option>
+            <option value="futsal">Futsal</option>
+          </select>
+        </div>
+        
+        <!-- Filtr haly -->
+        <div class="filter-group">
+          <!-- Popisek -->
+          <label for="hall-select-profile">Hala</label>
+          
+          <!-- Dropdown se halami -->
+          <select id="hall-select-profile" class="filter-select">
+            <option value="vsechny">Všechny haly</option>
+            <option value="10-zs-plzen">10. ZŠ Plzeň</option>
+            <option value="hala-bohemians">Hala Bohemians</option>
+            <option value="palac-her-praha">Palác her Praha</option>
+            <option value="hala-sparty">Hala Sparty</option>
+          </select>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Kartička s statistikami hráče -->
+      <div class="card">
+      <!-- ============================================
+           STATISTIKY - Čtyři základní údaje
+           ============================================ -->
+      <div class="stats-grid">
+        
+        <!-- Zápasy -->
+        <div class="stat-item">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Zápasy</div>
+        </div>
+        
+        <!-- Góly -->
+        <div class="stat-item">
+          <div class="stat-number">28</div>
+          <div class="stat-label">Góly</div>
+        </div>
+        
+        <!-- Asistence -->
+        <div class="stat-item">
+          <div class="stat-number">15</div>
+          <div class="stat-label">Asistencí</div>
+        </div>
+        
+        <!-- Body -->
+        <div class="stat-item">
+          <div class="stat-number">43</div>
+          <div class="stat-label">Body</div>
+        </div>
+        
+      </div>
+      
+      <!-- ============================================
+           TLAČÍTKA AKCÍ
+           ============================================ -->
+      <div class="profile-actions">
+      </div>
+    </div>
+    
+    <!-- ============================================
+         DETAILNÍ INFORMACE - Osobní údaje
+         ============================================ -->
+      <div class="card">
+      <!-- Nadpis sekce -->
+      <h2>Osobní údaje</h2>
+      
+      <!-- Email -->
+      <div class="info-row">
+        <span class="info-label">📧 Email:</span>
+          <span class="info-value" id="playerEmail">Loading...</span>
+      </div>
+      
+      <!-- Telefon -->
+      <div class="info-row">
+        <span class="info-label">📞 Telefon:</span>
+        <span class="info-value"id="playerPhone">
+
+    Loading...</span>
+      </div>
+      
+      <!-- Datum narození -->
+      <div class="info-row">
+        <span class="info-label">📅 Datum narození:</span>
+          <span class="info-value" id="playerBirthDate"> Loading...</span>
+      </div>
+      
+      <!-- Pohlaví -->
+      <div class="info-row">
+        <span class="info-label">👤 Pohlaví:</span>
+        <span class="info-value">Muž</span>
+      </div>
+      
+      <!-- Domácí hala -->
+      <div class="info-row">
+        <span class="info-label">📍 Domácí hala:</span>
+        <span class="info-value">10. ZŠ Plzeň</span>
+      </div>
+      
+      <!-- Prázdná řádka -->
+      <div class="divider"></div>
+      
+      <!-- Stav hráče -->
+      <h3>Stav hráče</h3>
+      
+      <div class="account-status-grid">
+        <!-- Status: Aktivní -->
+        <div class="account-item">
+          <span class="account-label">Status konta</span>
+          <span class="account-value account-active">✓ Aktivní</span>
+        </div>
+        
+        <!-- Členství -->
+        <div class="account-item">
+          <span class="account-label">Členství</span>
+          <span class="account-value">Standardní</span>
+        </div>
+        
+        <!-- Zaplaceno do -->
+        <div class="account-item">
+          <span class="account-label">Stav plateb</span>
+          <span class="account-value">✓ Vše zaplaceno</span>
+        </div>
+        
+        <!-- Medaile/Ročníky -->
+        <div class="account-item">
+          <span class="account-label">Člen od</span>
+          <span class="account-value">1. září 2020</span>
+        </div>
+      </div>
+      
+      <!-- Link na detail konta  - doplním na <a href="konto-detail.html"-->
+      <div class="account-link">
+        <a href="#"
+           onclick="notImplemented()"
+           class="btn">
+          Více informací o kontě →
+        </a>
+      </div>
+    </div>
+      <!-- ============================================
+           HISTORIE AKTIVIT
+           ============================================ -->
+
+      <div class="card">
+
+          <h2>
+              Historie aktivit
+          </h2>
+
+          <div class="table-wrapper">
+
+              <table class="table">
+
+                  <thead>
+
+                  <tr>
+                      <th>Datum</th>
+                      <th>Aktivita</th>
+                      <th>Status</th>
+                  </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                  <tr>
+                      <td>12. 5. 2026</td>
+
+                      <td>Florbalový trénink</td>
+
+                      <td>
+                    <span class="badge badge-success">
+                        Dorazil
+                    </span>
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td>8. 5. 2026</td>
+
+                      <td>Futsalový zápas</td>
+
+                      <td>
+                    <span class="badge badge-danger">
+                        Nepřišel
+                    </span>
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td>1. 5. 2026</td>
+
+                      <td>Florbalový trénink</td>
+
+                      <td>
+                    <span class="badge badge-neutral">
+                        Omluven
+                    </span>
+                      </td>
+                  </tr>
+
+                  </tbody>
+
+              </table>
+
+          </div>
+
+      </div>
+  </section>
+
+    </main>
+
+</div>
+
+<script>
+
+    async function loadPlayer() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const playerId =
+            params.get("id");
+
+        const response = await fetch(
+            `http://localhost:8080/players/${playerId}`
+        );
+
+        const player = await response.json();
+
+        document.getElementById(
+            "playerName"
+        ).innerText =
+
+            player.firstName + " " +
+            player.lastName;
+
+        document.getElementById(
+            "playerEmail"
+        ).innerText =
+
+            "player@email.cz";
+
+        document.getElementById(
+            "playerBirthDate"
+        ).innerText =
+
+            player.birthDate;
+
+        document.getElementById(
+            "playerPhone"
+        ).innerText =
+
+            player.phone || "-";
+    }
+
+    loadPlayer();
+
+    async function editPlayer() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const playerId =
+            params.get("id");
+
+        const response = await fetch(
+            `http://localhost:8080/players/${playerId}`
+        );
+
+        const player = await response.json();
+
+        document.getElementById(
+            "editProfileForm"
+        ).style.display = "block";
+
+        document.getElementById(
+            "editFirstName"
+        ).value = player.firstName;
+
+        document.getElementById(
+            "editLastName"
+        ).value = player.lastName;
+
+        document.getElementById(
+            "editPhone"
+        ).value = player.phone || "";
+    }
+
+    async function savePlayer() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const playerId =
+            params.get("id");
+
+        const response = await fetch(
+            `http://localhost:8080/players/${playerId}`
+        );
+
+        const player = await response.json();
+
+        player.firstName =
+            document.getElementById(
+                "editFirstName"
+            ).value;
+
+        player.lastName =
+            document.getElementById(
+                "editLastName"
+            ).value;
+
+        player.phone =
+            document.getElementById(
+                "editPhone"
+            ).value;
+
+        await fetch(
+            `http://localhost:8080/players/${playerId}`,
+            {
+                method: "PUT",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify(player)
+            }
+        );
+
+        loadPlayer();
+
+        document.getElementById(
+            "editProfileForm"
+        ).style.display = "none";
+
+        alert("Profil uložen 😄");
+    }
+
+</script>
+</body>
+
+</html>

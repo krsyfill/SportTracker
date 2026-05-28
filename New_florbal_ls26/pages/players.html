@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hráči | SportTracker</title>
+
+    <link rel="stylesheet"
+          href="../css/styles.css">
+
+    <script src="../js/layout.js"
+            defer></script>
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+
+            <div class="page-header-content">
+
+                <h1>Hráči</h1>
+
+                <p>
+                    Přehled všech hráčů v systému
+                </p>
+
+            </div>
+
+        </header>
+
+        <!-- TABLE -->
+        <section class="card">
+
+            <div class="table-wrapper">
+
+                <table class="table">
+
+                    <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Jméno</th>
+                        <th>Příjmení</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="playersTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+    async function loadPlayers() {
+
+        const response = await fetch(
+            "http://localhost:8080/players"
+        );
+
+        const players =
+            await response.json();
+        players.sort((a, b) => a.id - b.id);
+
+        const tableBody =
+            document.getElementById(
+                "playersTableBody"
+            );
+
+        tableBody.innerHTML = "";
+
+        players.forEach(player => {
+
+            tableBody.innerHTML += `
+
+                <tr class="clickable-row"
+                    onclick="window.location.href='../pages/profil.html?id=${player.id}'">
+
+                    <td>
+                        ${player.id}
+                    </td>
+
+                    <td>
+                        ${player.firstName}
+                    </td>
+
+                    <td>
+                        ${player.lastName}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+    }
+
+    loadPlayers();
+
+</script>
+
+</body>
+
+</html>

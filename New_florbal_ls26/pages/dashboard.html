@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | SportTracker</title>
+
+    <!-- Globální CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/layout.js" defer></script>
+</head>
+
+<body>
+
+<!-- =========================================
+     APP LAYOUT
+     Celý wrapper aplikace
+     ========================================= -->
+    <div class="app-layout">
+
+    <!-- =========================================
+         SIDEBAR
+         Levé menu aplikace
+         ========================================= -->
+    <div id="sidebar-container"></div>
+
+    <!-- =========================================
+         MAIN CONTENT
+         Hlavní obsah stránky
+         ========================================= -->
+    <main class="main-content">
+
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+
+            <!-- LEFT -->
+            <div class="page-header-content">
+
+                <h1>Dashboard</h1>
+
+                <p>
+                    Přehled systému amatérské florbalové ligy
+                </p>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="page-header-actions">
+
+                <button class="btn"
+                        onclick="window.location.href='../pages/create-training.html'">
+                    + Přidat trénink
+                </button>
+
+                <button class="btn"
+                        onclick="notImplemented()">
+                    + Přidat zápas
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- =========================================
+             DASHBOARD GRID
+             Přehledové karty
+             ========================================= -->
+        <!-- =========================================
+     DASHBOARD SEKCE
+     ========================================= -->
+
+        <!-- KPI KARTY -->
+        <section class="dashboard-grid">
+            <!-- Aktivní hráči -->
+            <a href="../pages/players.html"
+               class="card quick-action-card">
+
+                <h3>Aktivní hráči</h3>
+
+                <div class="card-number">
+                    42
+                </div>
+
+            </a>
+
+            <!-- Tréninky -->
+            <a href="../pages/trainings.html"
+               class="card quick-action-card">
+
+                <h3>Nadcházející tréninky</h3>
+
+                <div class="card-number">
+                    8
+                </div>
+
+            </a>
+
+            <!-- Zápasy -->
+            <a href="../pages/error.html"
+               class="card quick-action-card">
+
+                <h3>Odehrané zápasy</h3>
+
+                <div class="card-number">
+                    124
+                </div>
+
+            </a>
+
+            <!-- Pokuty -->
+            <a href="../pages/error.html"
+               class="card quick-action-card">
+
+                <h3>Nezaplacené pokuty</h3>
+
+                <div class="card-number">
+                    3
+                </div>
+
+            </a>
+
+
+            </section>
+        <!-- =========================================
+     QUICK ACTIONS
+     ========================================= -->
+
+        <section class="page-section">
+
+            <div class="page-section-header">
+
+                <h2 class="page-section-title">
+                    Rychlé akce
+                </h2>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <!-- Přidat trénink -->
+                <a href="../pages/create-training.html"
+                   class="card quick-action-card">
+
+                    <h3>
+                        ➕ Nový trénink
+                    </h3>
+
+                    <p>
+                        Vytvoření nového tréninku
+                    </p>
+
+                </a>
+
+                <!-- Statistiky -->
+                <a href="../pages/statistiky.html"
+                   class="card quick-action-card">
+
+                    <h3>
+                        📊 Statistiky
+                    </h3>
+
+                    <p>
+                        Zobrazit statistiky hráčů
+                    </p>
+
+                </a>
+
+                <!-- Hráči -->
+                <a href="../pages/players.html"
+                   class="card quick-action-card">
+
+                    <h3>
+                        👥 Hráči
+                    </h3>
+
+                    <p>
+                        Přehled hráčů a účtů
+                    </p>
+
+                </a>
+
+            </div>
+
+
+
+        </section>
+
+        <!-- =========================================
+             NEJBLIŽŠÍ TRÉNINKY
+             ========================================= -->
+
+        <section class="page-section">
+
+            <div class="page-section-header">
+
+                <h2 class="page-section-title">
+                    Nejbližší tréninky
+                </h2>
+
+                <div class="page-section-actions">
+
+                    <button class="btn"
+                            onclick="notImplemented()">
+                        Zobrazit vše
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="table-wrapper">
+                <table class="table">
+
+                <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Sport</th>
+                    <th>Hala</th>
+                    <th>Hráči</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td>12. 5. 2026</td>
+                    <td>Florbal</td>
+                    <td>10. ZŠ Plzeň</td>
+                    <td>18 / 20</td>
+                </tr>
+
+                <tr>
+                    <td>15. 5. 2026</td>
+                    <td>Futsal</td>
+                    <td>Bohemians Arena</td>
+                    <td>14 / 20</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================
+             TOP HRÁČI
+             ========================================= -->
+
+        <section class="dashboard-grid">
+
+            <!-- Nejlepší střelec -->
+            <a href="../pages/error.html"
+   class="card quick-action-card">
+
+                <h3>Nejlepší střelec</h3>
+
+                <div class="card-text">
+                    Jan Dvořák
+                </div>
+
+                <p>28 gólů</p>
+
+            </a>
+
+            <!-- Nejlepší nahrávač -->
+            <a href="../pages/error.html"
+   class="card quick-action-card">
+
+                <h3>Nejlepší nahrávač</h3>
+
+                <div class="card-text">
+                    Martin Svoboda
+                </div>
+
+                <p>19 asistencí</p>
+
+            </a>
+
+            <!-- Nejlepší docházka -->
+            <a href="../pages/error.html"
+   class="card quick-action-card">
+
+                <h3>Nejlepší docházka</h3>
+
+                <div class="card-text">
+                    Petr Novák
+                </div>
+
+                <p>96 % účast</p>
+
+            </a>
+
+        </section>
+
+        <!-- =========================================
+             RYCHLÉ AKCE
+             ========================================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Rychlé akce
+            </h2>
+
+            <div class="dashboard-grid">
+
+                <button class="btn"
+                        onclick="window.location.href='../pages/create-training.html'">
+                    + Přidat trénink
+                </button>
+
+                <button class="btn"
+                        onclick="notImplemented()">
+                    + Přidat zápas
+                </button>
+
+                <button class="btn"
+                        onclick="notImplemented()">
+                    + Přidat hráče
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

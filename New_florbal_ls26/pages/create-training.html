@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vytvořit trénink | SportTracker</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/layout.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+        <!-- BREADCRUMBS -->
+
+        <div class="breadcrumbs">
+
+            <a href="../pages/dashboard.html"
+               class="breadcrumb-link">
+
+                Dashboard
+
+            </a>
+
+            <span class="breadcrumb-separator">
+        /
+    </span>
+
+            <a href="../pages/trainings.html"
+               class="breadcrumb-link">
+
+                Tréninky
+
+            </a>
+
+            <span class="breadcrumb-separator">
+        /
+    </span>
+
+            <span class="breadcrumb-current">
+        Vytvořit trénink
+    </span>
+
+        </div>
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h1>Vytvořit trénink</h1>
+
+                <p>
+                    Přidání nového tréninku do systému
+                </p>
+            </div>
+
+        </header>
+
+        <!-- FORM CARD -->
+        <section class="card">
+
+            <form class="form"
+                  onsubmit="createTraining(event)">
+
+                <div class="form-grid">
+
+                    <!-- Datum -->
+                    <div class="form-field">
+
+                        <label class="form-label">
+                            Datum
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-input"
+                                id="trainingDate"
+                        >
+
+                    </div>
+
+                    <!-- Čas -->
+                    <div class="form-field">
+
+                        <label class="form-label">
+                            Čas
+                        </label>
+
+                        <input
+                                type="time"
+                                class="form-input"
+                        >
+
+                    </div>
+
+                    <!-- Sport -->
+                    <div class="form-field">
+
+                        <label class="form-label">
+                            Sport
+                        </label>
+
+                        <select class="form-select"
+                                id="trainingSport">
+
+                            <option>
+                                Florbal
+                            </option>
+
+                            <option>
+                                Futsal
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Hala -->
+                    <div class="form-field">
+
+                        <label class="form-label">
+                            Hala
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>
+                                10. ZŠ Plzeň
+                            </option>
+
+                            <option>
+                                Bohemians Arena
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Kapacita -->
+                    <div class="form-field">
+
+                        <label class="form-label">
+                            Kapacita
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-input"
+                                placeholder="20"
+                                id="trainingCapacity"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Poznámka -->
+                <div class="form-field">
+
+                    <label class="form-label">
+                        Poznámka
+                    </label>
+
+                    <textarea
+                            class="form-textarea"
+                            placeholder="Poznámka k tréninku..."
+                    ></textarea>
+
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="form-actions">
+
+                    <button class="btn">
+                        Vytvořit trénink
+                    </button>
+
+                    <button class="btn"
+                            type="button"
+                            onclick="notImplemented()">>
+                        Zrušit
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+    async function createTraining(event) {
+
+        event.preventDefault();
+
+        const training = {
+
+            trainingDate:
+            document.getElementById(
+                "trainingDate"
+            ).value
+        };
+
+        await fetch(
+            "http://localhost:8080/trainings",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify(
+                    training
+                )
+            }
+        );
+
+        alert("Trénink vytvořen 😄");
+
+        window.location.href =
+            "../pages/trainings.html";
+    }
+
+</script>
+</body>
+
+</html>
