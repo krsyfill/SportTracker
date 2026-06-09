@@ -1,7 +1,8 @@
 package com.example.sporttracker.controller;
 
 import com.example.sporttracker.entity.Player;
-import com.example.sporttracker.repository.PlayerRepository;
+import com.example.sporttracker.service.PlayerService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,16 +11,16 @@ import java.util.List;
 @RequestMapping("/players")
 public class PlayerController {
 
-    private final PlayerRepository playerRepository;
+    private final PlayerService playerService;
 
-    public PlayerController(PlayerRepository playerRepository) {
-        this.playerRepository = playerRepository;
+    public PlayerController(PlayerService playerService) {
+        this.playerService = playerService;
     }
 
     @GetMapping
     public List<Player> getPlayers() {
 
-        return playerRepository.findAll();
+        return playerService.getPlayers();
     }
 
     @GetMapping("/{id}")
@@ -27,44 +28,22 @@ public class PlayerController {
             @PathVariable Long id
     ) {
 
-        return playerRepository.findById(id)
-                .orElse(null);
+        return playerService.getPlayerById(id);
     }
 
     @PutMapping("/{id}")
     public Player updatePlayer(
             @PathVariable Long id,
-            @RequestBody Player updatedPlayer
+            @Valid @RequestBody Player updatedPlayer
     ) {
 
-        Player player =
-                playerRepository.findById(id)
-                        .orElse(null);
+        return playerService.updatePlayer(id, updatedPlayer);
+    }
 
-        if (player == null) {
-            return null;
-        }
-
-        player.setFirstName(
-                updatedPlayer.getFirstName()
-        );
-
-        player.setLastName(
-                updatedPlayer.getLastName()
-        );
-
-        player.setPhone(
-                updatedPlayer.getPhone()
-        );
-
-        player.setBirthDate(
-                updatedPlayer.getBirthDate()
-        );
-
-        player.setNote(
-                updatedPlayer.getNote()
-        );
-
-        return playerRepository.save(player);
+    @GetMapping("/{id}/attendance-rate")
+    public double getAttendanceRate(
+            @PathVariable Long id
+    ) {
+        return playerService.getAttendanceRate(id);
     }
 }

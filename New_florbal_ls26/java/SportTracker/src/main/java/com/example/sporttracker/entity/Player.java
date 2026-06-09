@@ -1,6 +1,8 @@
 package com.example.sporttracker.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -12,14 +14,17 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String firstName;
 
+    @NotBlank
     private String lastName;
 
     private String phone;
 
     private LocalDate birthDate;
 
+    @Size(max = 255)
     private String note;
 
     public Player() {
